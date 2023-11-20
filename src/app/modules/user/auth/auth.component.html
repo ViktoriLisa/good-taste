@@ -1,0 +1,47 @@
+<mat-card class="auth">
+	<mat-card-header class="auth-header">
+		<h1 class="auth-header__title">{{ mode === AuthMode.LOGIN ? 'Hello :)' : 'Welcome!' }}</h1>
+		<p class="auth-header__subtitle">{{ mode === AuthMode.LOGIN ? 'Sign into your Account' : 'Create an Account' }}</p>
+	</mat-card-header>
+	<form class="auth-form" [formGroup]="authForm" (ngSubmit)="onSubmit()">
+		<mat-card-content class="auth-form__content">
+			<mat-form-field *ngIf="mode === AuthMode.SIGN_UP" appearance="outline">
+				<mat-label>User Name</mat-label>
+				<input type="text" matInput formControlName="name">
+				<mat-icon matSuffix>person</mat-icon>
+				<mat-error *ngIf="nameControl?.invalid">{{ getErrorMessage(nameControl!) }}</mat-error>
+			</mat-form-field>
+			<mat-form-field appearance="outline">
+				<mat-label>Email</mat-label>
+				<input matInput type="email" formControlName="email">
+				<mat-icon matSuffix>mail</mat-icon>
+				<mat-error *ngIf="emailControl?.invalid">{{ getErrorMessage(emailControl!) }}</mat-error>
+			</mat-form-field>
+			<mat-form-field appearance="outline">
+				<mat-label>Password</mat-label>
+				<input matInput formControlName="password" [type]="(hidePassword) ? 'password' : 'text'">
+				<mat-icon matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+					<mat-icon>{{ (hidePassword) ? 'visibility_off' : 'visibility' }}</mat-icon>
+				</mat-icon>
+				<mat-error *ngIf="passwordControl?.invalid">{{ getErrorMessage(passwordControl!) }}</mat-error>
+			</mat-form-field>
+<!--			<mat-checkbox checked>Remember me</mat-checkbox>-->
+<!--			<a href="#" class="auth-form__forgot-password">Forgot your password?</a>-->
+		</mat-card-content>
+		<mat-card-actions class="auth-form__actions">
+			<button mat-raised-button type="submit" class="auth-form__submit-btn" color="primary" [disabled]="!authForm.valid">
+				{{ (mode === AuthMode.LOGIN) ? 'Login' : 'Register Now' }}
+			</button>
+		</mat-card-actions>
+		<p *ngIf="mode === AuthMode.LOGIN" class="auth-signup">
+			Don't have an account? <button class="auth-signup__link" (click)="changeMode(AuthMode.SIGN_UP)">
+			Register Now
+			</button>
+		</p>
+		<p *ngIf="mode === AuthMode.SIGN_UP" class="auth-signup">
+			Already have an account? <button class="auth-signup__link" (click)="changeMode(AuthMode.LOGIN)">
+			Login
+			</button>
+		</p>
+	</form>
+</mat-card>

@@ -1,0 +1,88 @@
+:host {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	background-image: image-set(
+			'../../../../assets/images/login-back-m.jpg' 1x,
+			'../../../../assets/images/login-back-l.jpg' 2x,
+			'../../../../assets/images/login-back-xl.jpg' 3.8x
+	);
+	background-position: 60%;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+}
+
+.auth {
+	width: 22rem;
+	padding: 0.5rem;
+	margin: 1rem;
+
+	&-header {
+		flex-direction: column;
+		align-items: center;
+		padding: 1rem;
+
+		&__title {
+			margin: 0;
+		}
+
+		&__subtitle {
+			margin-block-start: 0;
+			color: #333;
+			font-weight: bold;
+		}
+	}
+
+	&-form {
+		&__content {
+			display: flex;
+			flex-direction: column;
+		}
+
+		mat-form-field {
+			transition: margin-block-end 0.3s;
+		}
+
+		mat-form-field[class*="mat-form-field-invalid"] {
+			margin-block-end: 1em;
+		}
+
+		&__actions {
+			justify-content: center;
+			padding: 1rem;
+		}
+
+		&__forgot-password {
+			color: #888;
+			font-size: 0.9rem;
+			text-align: end;
+			cursor: pointer;
+			width: max-content;
+			align-self: flex-end;
+		}
+
+		&__submit-btn[type="submit"] {
+			width: 100%;
+			border-radius: 16px;
+			color: white;
+		}
+	}
+
+	&-signup {
+		text-align: center;
+		font-size: 0.9rem;
+		margin-block-end: 1rem;
+		margin-block-start: 2rem;
+
+		&__link {
+			text-decoration: underline;
+			color: #4caf50; // todo: primary
+			cursor: pointer;
+			padding: 0;
+			background: none;
+			border: none;
+		}
+	}
+}

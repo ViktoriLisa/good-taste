@@ -8,6 +8,7 @@ import { AngularFireModule } from "@angular/fire/compat";
 import { environment } from "../environments/environment";
 import { AngularFirestoreModule } from "@angular/fire/compat/firestore";
 import { AngularFireAuthModule } from "@angular/fire/compat/auth";
+import { AppLayoutModule } from './modules/layout/app-layout.module';
 
 @NgModule({
 	declarations: [
@@ -19,7 +20,8 @@ import { AngularFireAuthModule } from "@angular/fire/compat/auth";
 		BrowserAnimationsModule,
 		AngularFireModule.initializeApp(environment.firebaseConfig),
 		AngularFirestoreModule,
-		AngularFireAuthModule
+		AngularFireAuthModule,
+		AppLayoutModule
 	],
 	providers: [],
 	bootstrap: [AppComponent]
